@@ -1,0 +1,23 @@
+.logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 125px;
+  color: var(--logo-primary-color);
+
+  &-primary-text {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 28px;
+    line-height: 1.46;
+    letter-spacing: 0.27em;
+    &--light-color {
+      color: var(--logo-secondary-color);
+    }
+  }
+
+  &-secondary-text {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 10px;
+    line-height: 1.1;
+  }
+}

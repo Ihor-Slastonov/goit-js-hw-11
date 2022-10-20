@@ -1,2 +1,15 @@
-@import './common';
+@import './base/vars';
+@import './base/common';
+
+@import './utils/visually-hidden';
+@import './utils/reset';
+
+@import './components/header-container';
+@import './components/container';
+@import './components/button';
+@import './components/logo';
+@import './components/search-form';
+
+@import './layouts/header';
+
 
