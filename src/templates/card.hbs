@@ -1,23 +1,24 @@
-<div class="photo-card">
-                <img src="./images/cat.png" alt="cat" loading="lazy" width="340" />
-                <div class="photo-card-info-box">
-                    <ul class="info">
-                        <li class="info-item">
-                            <h2 class="info-title">Likes</h2>
-                            <p class="info-after-title">1165</p>
-                        </li>
-                        <li class="info-item">
-                            <h2 class="info-title">Views</h2>
-                            <p class="info-after-title">542</p>
-                        </li>
-                        <li class="info-item">
-                            <h2 class="info-title">Comments</h2>
-                            <p class="info-title-after">2845</p>
-                        </li>
-                        <li class="info-item">
-                            <h2 class="info-title">Downloads</h2>
-                            <p class="info-after-title">900</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+{{#each this.hits}}
+  <div class='photo-card'>
+            <img src='{{webformatURL}}' alt='{{tags}}' loading='lazy' width="340" />
+      <ul class='info'>
+        <li class='info-item'>
+          <p class='info-title'>Likes</p>
+          <p class='info-after-title'>{{likes}}</p>
+        </li>
+        <li class='info-item'>
+          <p class='info-title'>Views</p>
+          <p class='info-after-title'>{{views}}</p>
+        </li>
+        <li class='info-item'>
+          <p class='info-title'>Comments</p>
+          <p class='info-title-after'>{{comments}}</p>
+        </li>
+        <li class='info-item'>
+          <p class='info-title'>Downloads</p>
+          <p class='info-after-title'>{{downloads}}</p>
+        </li>
+      </ul>
+
+  </div>
+{{/each}}
