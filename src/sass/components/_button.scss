@@ -1,4 +1,5 @@
 .btn {
+  display: block;
   padding: 8px 17px;
   width: 102px;
   height: 40px;
@@ -22,5 +23,11 @@
     background-color: var(--btn-second-bg-color);
     box-shadow: 0px 4px 4px rgba(231, 246, 242, 0.25);
     color: var(--accent-color);
+  }
+  &-more{
+    margin-top: 20px;
+    width: 140;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
