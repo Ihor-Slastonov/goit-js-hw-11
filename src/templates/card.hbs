@@ -1,6 +1,7 @@
 {{#each this.hits}}
   <div class='photo-card'><a href='{{largeImageURL}}' class='gallery-item'>
       <img src='{{webformatURL}}' alt='{{tags}}' loading='lazy' width='340' />
+      </a>
       <ul class='info'>
         <li class='info-item'>
           <p class='info-title'>Likes</p>
@@ -19,6 +20,5 @@
           <p class='info-after-title'>{{downloads}}</p>
         </li>
       </ul>
-            </a>
   </div>
 {{/each}}
