@@ -9,6 +9,11 @@ const refs = {
     form: document.querySelector('.js-search-form'),
     guard: document.querySelector('.guard'),
 };
+const gallerySimpleLightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+});
+console.log(gallerySimpleLightbox);
 
 const pixabayApiService = new PixabayApiService();
 // ------ Infinity scroll ------
@@ -65,9 +70,12 @@ function onLoadMore() {
         return pixabayApiService.fetchPictures().then(appendCardsMarkup);
     }
 }
+
 function appendCardsMarkup(card) {
     refs.gallery.insertAdjacentHTML('beforeend', markupGallery(card))
+    gallerySimpleLightbox.refresh();
 }
+
 function clearGallery() {
     refs.gallery.innerHTML = '';
 }
