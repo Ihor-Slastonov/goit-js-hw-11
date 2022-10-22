@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '30754633-49a4360a1de811b7fe1cb3ed9';
@@ -22,6 +23,9 @@ export default class PixabayApiService {
                 }
             });
             this.page += 1;
+            if (response.data.hits.length === 0) {
+                Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+            }
             return await response.data;
         } catch (error) {
             console.log(error);
