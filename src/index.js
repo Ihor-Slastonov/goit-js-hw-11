@@ -18,7 +18,14 @@ const gallerySimpleLightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
-
+SmoothScroll({
+    stepSize: 175,
+    animationTime: 800,
+    accelerationDelta: 200,
+    accelerationMax: 6,
+    keyboardSupport: true,
+    arrowScroll: 100,
+});
 
 const pixabayApiService = new PixabayApiService();
 // ------ Infinity scroll setup ------
@@ -51,7 +58,6 @@ function checkAndAppendMarkup(resultPromise) {
         Notify.success(`Hooray! We found ${resultPromise.totalHits} images.`);
         appendCardsMarkup(resultPromise);
         observer.observe(refs.guard);
-        smoothScroll()
     } else {
         Notify.failure("Sorry, there are no images matching your search query. Please try again.")
         return
@@ -90,16 +96,7 @@ function clearGallery() {
     refs.gallery.innerHTML = '';
     SmoothScroll.destroy()
 }
-function smoothScroll() {
-    SmoothScroll({
-        stepSize: 175,
-        animationTime: 800,
-        accelerationDelta: 200,
-        accelerationMax: 6,
-        keyboardSupport: true,
-        arrowScroll: 100,
-    });
-}
+
 // --------------------Back-To-Top--------------------------//
 const toTopBtn = document.querySelector('.back-to-top');
 toTopBtn.addEventListener('click', backToTop);
@@ -113,9 +110,7 @@ function onScroll() {
     }
     if (scrolledValue < coords) {
         toTopBtn.classList.remove('back-to-top--show')
-        toTopBtn.removeEventListener(backToTop);
     }
-
 }
 
 function backToTop() {
