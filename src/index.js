@@ -4,6 +4,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import PixabayApiService from './js-service/pixabay-service.js'
 import markupGallery from './templates/card.hbs';
 import "simplelightbox/dist/simple-lightbox.min.css";
+import 'animate.css';
+
 
 const refs = {
     gallery: document.querySelector('.js-gallery'),
@@ -98,7 +100,7 @@ function smoothScroll() {
         arrowScroll: 100,
     });
 }
-
+// --------------------Back-To-Top--------------------------//
 const toTopBtn = document.querySelector('.back-to-top');
 toTopBtn.addEventListener('click', backToTop);
 window.addEventListener('scroll', onScroll);
@@ -107,10 +109,11 @@ function onScroll() {
     const scrolledValue = window.pageYOffset;
     const coords = document.documentElement.clientHeight;
     if (scrolledValue > coords) {
-        toTopBtn.classList.add('back-to-top--show')
+        toTopBtn.classList.add('back-to-top--show', 'animate__animated', 'animate__heartBeat')
     }
     if (scrolledValue < coords) {
         toTopBtn.classList.remove('back-to-top--show')
+        toTopBtn.removeEventListener(backToTop);
     }
 
 }
@@ -121,3 +124,4 @@ function backToTop() {
         setTimeout(backToTop, 0);
     }
 }
+// -------------------------------------------------------//
