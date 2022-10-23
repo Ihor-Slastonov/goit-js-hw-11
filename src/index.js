@@ -39,7 +39,7 @@ function onSearchSubmit(e) {
         return;
     }
     pixabayApiService.resetPage();
-    pixabayApiService.fetchPictures().then(checkAndAppendMarkup).catch(err =>console.log(err));
+    pixabayApiService.fetchPictures().then(checkAndAppendMarkup);
     e.currentTarget.reset()
 }
 
