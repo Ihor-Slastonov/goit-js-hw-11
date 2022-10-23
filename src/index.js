@@ -32,14 +32,14 @@ const observer = new IntersectionObserver(onLoad, options);
 function onSearchSubmit(e) {
     e.preventDefault();
     clearGallery();
-    if (refs.form.elements.searchQuery.value.trim() === '') {
+    pixabayApiService.query = refs.form.elements.searchQuery.value.trim()
+    console.log(pixabayApiService.query);
+    if (pixabayApiService.query === '') {
         Notify.failure('It cannot be empty field')
         return;
     }
-    pixabayApiService.query = refs.form.elements.searchQuery.value.trim();
     pixabayApiService.resetPage();
-    pixabayApiService.fetchPictures().then(checkAndAppendMarkup);
-    pixabayApiService.resetSearch();
+    pixabayApiService.fetchPictures().then(checkAndAppendMarkup).catch(err =>console.log(err));
     e.currentTarget.reset()
 }
 
@@ -49,9 +49,17 @@ function checkAndAppendMarkup(resultPromise) {
         Notify.success(`Hooray! We found ${resultPromise.totalHits} images.`);
         appendCardsMarkup(resultPromise);
         observer.observe(refs.guard);
-        SmoothScroll({ stepSize: 20 })
+        SmoothScroll({
+            stepSize: 175,
+            animationTime: 800,
+            accelerationDelta: 200,
+            accelerationMax: 6,
+            keyboardSupport: true,
+            arrowScroll: 100,
+        });
     } else {
         Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+        return
     }
 }
 // ----- infinity scroll ----//
@@ -82,4 +90,6 @@ function appendCardsMarkup(card) {
 
 function clearGallery() {
     refs.gallery.innerHTML = '';
+    SmoothScroll.destroy()
 }
+
