@@ -96,7 +96,6 @@ function appendCardsMarkup(card) {
 
 function clearGallery() {
     refs.gallery.innerHTML = '';
-    SmoothScroll.destroy()
 }
 
 // --------------------Back-To-Top--------------------------//
