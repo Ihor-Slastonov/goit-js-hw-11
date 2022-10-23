@@ -1,3 +1,4 @@
+import SmoothScroll from "smoothscroll-for-websites";
 import SimpleLightbox from "simplelightbox";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import PixabayApiService from './js-service/pixabay-service.js'
@@ -9,14 +10,16 @@ const refs = {
     form: document.querySelector('.js-search-form'),
     guard: document.querySelector('.guard'),
 };
+refs.form.addEventListener('submit', onSearchSubmit);
+
 const gallerySimpleLightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
-console.log(gallerySimpleLightbox);
+
 
 const pixabayApiService = new PixabayApiService();
-// ------ Infinity scroll ------
+// ------ Infinity scroll setup ------
 const options = {
     root: null,
     rootMargin: '200px',
@@ -25,19 +28,19 @@ const options = {
 const observer = new IntersectionObserver(onLoad, options);
 // ----------------------------
 
-refs.form.addEventListener('submit', onSearchSubmit);
-
 
 function onSearchSubmit(e) {
     e.preventDefault();
     clearGallery();
-    pixabayApiService.query = refs.form.elements.searchQuery.value.trim();
-    if (pixabayApiService.query === '') {
-        return Notify.failure('It cannot be empty field')
+    if (refs.form.elements.searchQuery.value.trim() === '') {
+        Notify.failure('It cannot be empty field')
+        return;
     }
+    pixabayApiService.query = refs.form.elements.searchQuery.value.trim();
     pixabayApiService.resetPage();
     pixabayApiService.fetchPictures().then(checkAndAppendMarkup);
-    e.currentTarget.reset();
+    pixabayApiService.resetSearch();
+    e.currentTarget.reset()
 }
 
 
@@ -46,11 +49,12 @@ function checkAndAppendMarkup(resultPromise) {
         Notify.success(`Hooray! We found ${resultPromise.totalHits} images.`);
         appendCardsMarkup(resultPromise);
         observer.observe(refs.guard);
+        SmoothScroll({ stepSize: 20 })
     } else {
         Notify.failure("Sorry, there are no images matching your search query. Please try again.")
     }
 }
-// ----- настрока infinity scroll ----//
+// ----- infinity scroll ----//
 function onLoad(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {

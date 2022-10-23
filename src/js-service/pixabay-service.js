@@ -39,6 +39,9 @@ export default class PixabayApiService {
     incrementPage() {
         this.page += 1;
     }
+    resetSearch() {
+        this.searchQuery =''
+    }
     get query() {
         return this.searchQuery;
     }
