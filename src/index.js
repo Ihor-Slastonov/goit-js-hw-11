@@ -32,8 +32,8 @@ const observer = new IntersectionObserver(onLoad, options);
 function onSearchSubmit(e) {
     e.preventDefault();
     clearGallery();
+
     pixabayApiService.query = refs.form.elements.searchQuery.value.trim()
-    console.log(pixabayApiService.query);
     if (pixabayApiService.query === '') {
         Notify.failure('It cannot be empty field')
         return;
@@ -84,6 +84,9 @@ function onLoadMore() {
 }
 
 function appendCardsMarkup(card) {
+    if (pixabayApiService.query === '') {
+        return;
+    }
     refs.gallery.insertAdjacentHTML('beforeend', markupGallery(card))
     gallerySimpleLightbox.refresh();
 }
