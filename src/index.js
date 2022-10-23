@@ -18,6 +18,8 @@ const gallerySimpleLightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
+// --------- SmoothScroll ---------- //
+
 SmoothScroll({
     stepSize: 175,
     animationTime: 800,
