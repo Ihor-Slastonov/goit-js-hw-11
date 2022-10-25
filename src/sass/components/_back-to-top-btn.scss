@@ -19,8 +19,7 @@
   transition: background-color var(--tansition-timing) var(--animation),
     border var(--tansition-timing) var(--animation),
     color var(--tansition-timing) var(--animation),
-    box-shadow var(--tansition-timing) var(--animation),
-    transform var(--tansition-timing) var(--animation);
+    box-shadow var(--tansition-timing) var(--animation);
   @include mobile {
     bottom: 80px;
     right: 10px;
@@ -30,14 +29,20 @@
   }
   @include desktop {
     transform: rotate(0.5turn);
+    transition: background-color var(--tansition-timing) var(--animation),
+      border var(--tansition-timing) var(--animation),
+      color var(--tansition-timing) var(--animation),
+      box-shadow var(--tansition-timing) var(--animation),
+      transform var(--tansition-timing) var(--animation);
   }
   &:hover {
     background-color: var(--btn-second-bg-color);
     color: var(--accent-color);
     border: 2px solid var(--btn-bg-color);
-    transform: rotate(1turn) scale(1.2);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: transform var(--tansition-timing) var(--animation);
+    @include desktop {
+      transform: rotate(1turn) scale(1.2);
+    }
   }
 }
 
