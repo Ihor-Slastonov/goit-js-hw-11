@@ -10,6 +10,10 @@
     font-size: 28px;
     line-height: 1.46;
     letter-spacing: 0.27em;
+    @include mobile {
+      font-size: 22px;
+      line-height: 0.69;
+    }
     &--light-color {
       color: var(--logo-secondary-color);
     }
@@ -19,5 +23,10 @@
     font-family: 'Julius Sans One', sans-serif;
     font-size: 10px;
     line-height: 1.1;
+    @include mobile {
+      margin-top: 4px;
+      font-size: 8px;
+      line-height: 0.9;
+    }
   }
 }

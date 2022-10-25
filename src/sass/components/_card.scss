@@ -9,6 +9,9 @@
   transition: box-shadow var(--tansition-timing) var(--animation),
     transform var(--tansition-timing) var(--animation);
   cursor: pointer;
+  @include mobile{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transform: scale(1.03);
