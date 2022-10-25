@@ -3,10 +3,10 @@
   align-items: center;
   @include mobile {
     position: absolute;
-    top: 5%;
+    top: 60px;
   }
   &-input {
-    width: 215px;
+    width: 213px;
     height: 28px;
     padding: 2px 0 2px 13px;
     margin-right: 15px;

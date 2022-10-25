@@ -5,7 +5,7 @@
     display: flex;
     @include mobile{
       flex-wrap: wrap;
-      padding: 4px 0;
+      padding: 10px 0;
     }
     @include desktop{
     // display: flex;
